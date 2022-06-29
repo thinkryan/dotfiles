@@ -1,0 +1,57 @@
+format = """
+$directory\
+$git_branch\
+$git_status\
+$package\
+$rust$golang\
+$cmd_duration\
+$line_break\
+$jobs\
+$character"""
+
+[character]
+format = "$symbol "
+success_symbol = " [~>](bold #c3e88d)"
+error_symbol = " [~>](bold #ff7d7f)"
+vicmd_symbol = " [<~](bold #ff7d7f)"
+vimcmd_visual_symbol = " [⏾](bold #f9e32a)"
+
+[directory]
+style = "bold fg:#f9e32a"
+
+[hostname]
+ssh_only = true
+format = "[$hostname]($style) "
+style = "fg:3"
+
+[git_status]
+format = "[$all_status$ahead_behind ]($style)"
+ahead = "-->(bold #f9e32a)"
+behind = "<--(bold #f9e32a)"
+diverged = "!=(bold #ff7d7f)"
+up_to_date = "[♥](bold #ff7d7f)"
+modified = "¿(bold #f9e32a)"
+staged = "[☇☇](bold #f9e32a)"
+renamed = "?(bold #ff7d7f)"
+deleted = "[🌧🌧]"
+style = "bold ($git)"
+
+[git_branch]
+symbol = " " # TODO: Add colors
+
+[nodejs]
+symbol = " " # TODO: Add colors
+
+[docker_context]
+symbol = " " # TODO: Add colors
+
+[aws]
+symbol = " " # TODO: Add Colors
+
+[package]
+format = '[$symbol$version ]($style)'
+
+[rust]
+format = '[$symbol($version )]($style)'
+
+# TODO: Add better directory visuals with MonoLisa

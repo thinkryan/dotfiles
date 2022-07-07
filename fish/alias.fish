@@ -28,10 +28,6 @@ end
 
 # Misc
 
-# Project Specific
-
-alias c4s "z clips4sale"
-
 # Tig CLI
 
 alias tt "tig status"

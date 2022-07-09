@@ -1,5 +1,10 @@
 # Listing files / LS (exa)
 
+# Tropical
+if test -e (dirname (status --current-filename))/tropical.fish
+    source (dirname (status --current-filename))/tropical.fish
+end
+
 # NOTE: Add some additional colorls options and figure out a way to reduce padding on -l output views
 if type -q colorls 
     alias ll "colorls -l"
@@ -26,7 +31,8 @@ if type -q docker
     alias dcd "docker compose down"
 end
 
-# Misc
+# OVN (OpenVPN)
+alias vpn "z ovn && sudo /opt/homebrew/sbin/openvpn  --config ./client.ovpn"
 
 # Tig CLI
 

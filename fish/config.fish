@@ -16,6 +16,7 @@ source (dirname (status --current-filename))/fzf-functions.fish
 # Alias
 source (dirname (status --current-filename))/alias.fish
 
+
 set -g GIT_EDITOR lvim
 set -g EDITOR lvim
 

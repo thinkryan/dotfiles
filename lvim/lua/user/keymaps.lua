@@ -1,11 +1,17 @@
 -- Plugin Specific Keymaps
--- @todo Refactor this and clenaup unused or keymaps that don't make sense
+-- TODO: Refactor this and clenaup unused or keymaps that don't make sense
 -- #######################
+
+-- TODO: Setup custom keymapping for TextObjects, Harpoon additionals
 
 local M = {}
 
 M.set_hlslens_keymaps = function()
   local opts = { noremap = true, silent = true }
+  
+  -- Delete a word backwards in normal mode
+  lvim.keys.normal_mode['dw'] = 'vb"_d';
+
   vim.api.nvim_set_keymap(
     "n",
     "n",

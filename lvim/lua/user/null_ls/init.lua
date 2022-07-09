@@ -42,6 +42,7 @@ M.config = function()
       filetypes = {
         "typescriptreact",
         "javascriptreact",
+        "javascript",
         "lua",
         "c",
         "cpp",

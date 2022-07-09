@@ -10,7 +10,7 @@ local opts = {
     ts_utils.setup {
       debug = false,
       disable_commands = false,
-      enable_import_on_completion = false,
+      enable_import_on_completion = true,
       import_all_timeout = 5000, -- ms
 
       -- eslint
@@ -30,8 +30,8 @@ local opts = {
       signature_help_in_parens = false,
 
       -- update imports on file move
-      update_imports_on_move = false,
-      require_confirmation_on_move = false,
+      update_imports_on_move = true,
+      require_confirmation_on_move = true,
       watch_dir = nil,
     }
     ts_utils.setup_client(client)

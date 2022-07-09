@@ -244,14 +244,29 @@ M.config = function()
       end,
     },
     -- {
-    --   "ray-x/navigator.lua",
-    --   requires = {
-    --     { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
-    --     { "neovim/nvim-lspconfig" },
-    --   },
-    --   require("navigator").setup(),
+    --   "neoclide/coc.nvim",
+    --   branch = "release",
+    --   run = "yarn install --frozen-lockfile",
     -- },
+    -- {
+    --   "yaegassy/coc-blade",
+    -- },
+    {
+      "kylechui/nvim-surround",
+      config = function()
+        require("nvim-surround").setup {
+          -- Configuration here, or leave empty to use defaults
+        }
+      end,
+    },
+    {
+      'github/copilot.vim',
+    }
   }
 end
+
+-- require("packer").startup(function()
+--   use {'neoclide/coc.nvim', branch = 'release', run = 'yarn install --frozen-lockfile' }
+-- end)
 
 return M

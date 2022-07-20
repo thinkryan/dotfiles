@@ -29,14 +29,11 @@ M.config = function()
   -- })
 
   local codelens_viewer = "lua require('user.codelens').show_line_sign()"
-  local user = os.getenv "USER"
-  if user and user == "legion" then
     create_aucmd("CursorHold", {
       group = "_lvim_user",
       pattern = { "*.ts", "*.tsx" },
       command = codelens_viewer,
     })
   end
-end
 
 return M

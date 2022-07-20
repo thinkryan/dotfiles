@@ -45,27 +45,27 @@ M.moonlight = function()
   moonlight.set()
 end
 
-M.catppuccin = function()
-  local catppuccin = require "catppuccin"
-  catppuccin.setup {
-    transparent_background = true,
-    catppuccin_flavour = "frappe",
-    term_colors = false,
-    styles = {
-      comments = "NONE",
-      keywords = "italic",
-    },
-    integrations = {
-      lsp_trouble = true,
-      nvimtree = {
-        transparent_panel = true,
-      },
-      which_key = true,
-      lightspeed = lvim.builtin.motion_provider == "lightspeed",
-      hop = lvim.builtin.motion_provider == "hop",
-    },
-  }
-end
+-- M.catppuccin = function()
+--   local catppuccin = require "catppuccin"
+--   catppuccin.setup {
+--     transparent_background = true,
+--     catppuccin_flavour = "frappe",
+--     term_colors = false,
+--     styles = {
+--       comments = "NONE",
+--       keywords = "italic",
+--     },
+--     integrations = {
+--       lsp_trouble = true,
+--       nvimtree = {
+--         transparent_panel = true,
+--       },
+--       which_key = true,
+--       lightspeed = lvim.builtin.motion_provider == "lightspeed",
+--       hop = lvim.builtin.motion_provider == "hop",
+--     },
+--   }
+-- end
 
 M.kanagawa = function()
   local kanagawa = require "kanagawa"

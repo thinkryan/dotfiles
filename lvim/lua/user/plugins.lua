@@ -57,11 +57,6 @@ M.config = function()
       require("user.theme").rose_pine(),
     },
     {
-      "catppuccin/nvim",
-      as = "catppuccin",
-      require("user.theme").catppuccin(),
-    },
-    {
       "rebelot/kanagawa.nvim",
       require("user.theme").kanagawa(),
     },
@@ -107,7 +102,6 @@ M.config = function()
       disable = not lvim.builtin.tabnine.active,
     },
     {
-
       "simrat39/symbols-outline.nvim",
       setup = function()
         require("user.symbols_outline").config()
@@ -153,17 +147,6 @@ M.config = function()
       before = "williamboman/nvim-lsp-installer",
     },
     {
-      "RishabhRD/nvim-cheat.sh",
-      requires = "RishabhRD/popfix",
-      config = function()
-        vim.g.cheat_default_window_layout = "vertical_split"
-      end,
-      opt = true,
-      cmd = { "Cheat", "CheatWithoutComments", "CheatList", "CheatListWithoutComments" },
-      keys = "<leader>Q",
-      disable = not lvim.builtin.cheat.active,
-    },
-    {
       "AckslD/nvim-neoclip.lua",
       config = function()
         require("user.neoclip").config()
@@ -205,16 +188,7 @@ M.config = function()
       requires = "nvim-telescope/telescope.nvim",
     },
     {
-      "ThePrimeagen/refactoring.nvim",
-      ft = { "typescript", "javascript", "lua", "c", "cpp", "go", "python", "java", "php" },
-      event = "BufRead",
-      config = function()
-        require("refactoring").setup {}
-      end,
-      disable = not lvim.builtin.refactoring.active,
-    },
-    {
-      "mattn/emmet-vim", -- TODO: Configure this properly
+      "mattn/emmet-vim",
     },
     {
       "lukas-reineke/indent-blankline.nvim",
@@ -243,30 +217,20 @@ M.config = function()
         require("user.filetype").config()
       end,
     },
-    -- {
-    --   "neoclide/coc.nvim",
-    --   branch = "release",
-    --   run = "yarn install --frozen-lockfile",
-    -- },
-    -- {
-    --   "yaegassy/coc-blade",
-    -- },
     {
       "kylechui/nvim-surround",
       config = function()
-        require("nvim-surround").setup {
-          -- Configuration here, or leave empty to use defaults
-        }
+        require("nvim-surround").setup()
       end,
     },
     {
-      'github/copilot.vim',
-    }
+      "github/copilot.vim",
+    },
+    {
+      "nvim-telescope/telescope-ui-select.nvim",
+      -- require("telescope").load_extension("ui-select"),
+    },
   }
 end
-
--- require("packer").startup(function()
---   use {'neoclide/coc.nvim', branch = 'release', run = 'yarn install --frozen-lockfile' }
--- end)
 
 return M

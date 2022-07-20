@@ -1,16 +1,10 @@
 -- Plugin Specific Keymaps
--- TODO: Refactor this and clenaup unused or keymaps that don't make sense
--- #######################
-
 -- TODO: Setup custom keymapping for TextObjects, Harpoon additionals
 
 local M = {}
 
 M.set_hlslens_keymaps = function()
   local opts = { noremap = true, silent = true }
-  
-  -- Delete a word backwards in normal mode
-  lvim.keys.normal_mode['dw'] = 'vb"_d';
 
   vim.api.nvim_set_keymap(
     "n",
@@ -84,7 +78,9 @@ M.set_lightspeed_keymaps = function()
 end
 
 local function set_bufferline_keymaps()
+  -- TODO: Does bufferline support buffer splitting?
   lvim.keys.normal_mode["<S-x>"] = "<Cmd>BufferKill<CR>"
+  -- TODO: Remove duplicate keymaps for cycling and use the one that is more natural
   lvim.keys.normal_mode["<S-l>"] = "<Cmd>BufferLineCycleNext<CR>"
   lvim.keys.normal_mode["<S-h>"] = "<Cmd>BufferLineCyclePrev<CR>"
   lvim.keys.normal_mode["[b"] = "<Cmd>BufferLineMoveNext<CR>"
@@ -130,6 +126,10 @@ local function set_telescope_keymaps()
   lvim.keys.normal_mode["<M-s>"] = ":Telescope lsp_document_symbols<cr>"
 end
 
+local function set_refactoring_keymaps()
+  lvim.keys.normal_mode["<leader>la"] = "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>"
+end
+
 local function set_harpoon_keymaps()
   lvim.keys.normal_mode["<C-Space>"] = "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<CR>"
   lvim.keys.normal_mode["tu"] = "<cmd>lua require('harpoon.term').gotoTerminal(1)<CR>"
@@ -164,6 +164,7 @@ end
 local function set_neogit_keymaps()
   lvim.keys.normal_mode["<leader>gs"] = ":Neogit<cr>"
 end
+
 local function set_command_center_keymaps()
   lvim.keys.normal_mode["<leader>?c"] = ":Telescope command_center<cr>"
 end
@@ -198,7 +199,20 @@ M.config = function()
   lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
   lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
 
+    -- Delete a word backwards in normal mode
+  lvim.keys.normal_mode["dw"] = 'vb"_d'
+
+  -- HTML selection (possibly port into Lunarvim specific keybinds)
+  lvim.keys.normal_mode["vix"] = 'va"oB'
+  lvim.keys.normal_mode["vax"] = 'va"oBh'
+  lvim.keys.normal_mode["dix"] = 'da"oB'
+  lvim.keys.normal_mode["dax"] = 'da"oBh'
+  lvim.keys.normal_mode["cix"] = 'ca"oB'
+  lvim.keys.normal_mode["cax"] = 'ca"oBh'
+
+
   set_telescope_keymaps()
+  set_refactoring_keymaps()
   set_trouble_keymaps()
   set_neogit_keymaps()
   set_command_center_keymaps()

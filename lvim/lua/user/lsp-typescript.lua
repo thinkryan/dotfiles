@@ -26,11 +26,11 @@ local opts = {
       formatter_config_fallback = nil,
 
       -- parentheses completion
-      complete_parens = false,
+      complete_parens = true,
       signature_help_in_parens = false,
 
       -- update imports on file move
-      update_imports_on_move = true,
+      update_imports_on_move = false,
       require_confirmation_on_move = true,
       watch_dir = nil,
     }

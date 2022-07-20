@@ -3,10 +3,6 @@ local bin_name = "blade-formatter"
 
 local cmd = { bin_name, "--stdio" }
 
-if vim.fn.has "win32" == 1 then
-  cmd = { "cmd.exe", "/C", bin_name, "--stdio" }
-end
-
 local function format_code()
   local params = {
     command = "blade-formatter",

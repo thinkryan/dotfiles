@@ -21,7 +21,7 @@ M.config = function()
     }
   end
   lvim.builtin.bufferline.options.navigation = { mode = "uncentered" }
-  lvim.builtin.bufferline.options.diagnostics = false -- do not show diagnostics in bufferline
+  lvim.builtin.bufferline.options.diagnostics = true -- do not show diagnostics in bufferline
   lvim.builtin.bufferline.options.diagnostics_indicator = function(_, _, diagnostics)
     local result = {}
     local symbols = { error = kind.icons.error, warning = kind.icons.warn, info = kind.icons.info }
@@ -98,6 +98,7 @@ M.config = function()
       },
     },
   }
+
   lvim.builtin.bufferline.options.separator_style = os.getenv "KITTY_WINDOW_ID"
 
   -- cmp
@@ -106,16 +107,17 @@ M.config = function()
 
   lvim.builtin.cmp.sources = {
     { name = "nvim_lsp", priority = 9 },
-    { name = "cmp_tabnine", priority = 8, max_item_count = 3 },
-    { name = "buffer", priority = 7, max_item_count = 5, keyword_length = 5 },
-    { name = "luasnip", priority = 7, max_item_count = 3 },
+    { name = "luasnip", priority = 4, max_item_count = 3 },
+    { name = "cmp_tabnine", priority = 7, max_item_count = 3 },
+    { name = "path", priority = 7, max_item_count = 5 },
+    { name = "buffer", priority = 6, max_item_count = 5, keyword_length = 5 },
     { name = "nvim_lua", priority = 5 },
-    { name = "path", priority = 4, max_item_count = 5 },
   }
+
   lvim.builtin.cmp.experimental = {
     ghost_text = false,
     native_menu = false,
-    custom_menu = true, -- Custom menu is nice but disable for testing
+    custom_menu = true,
   }
 
   local cmp_sources = {
@@ -302,7 +304,7 @@ M.config = function()
       },
     },
     swap = {
-      envble = true,
+      enable = true,
       swap_next = {
         ["<leader><M-a>"] = "@parameter.inner",
         ["<leader><M-f>"] = "@function.outer",
@@ -489,7 +491,6 @@ M.config = function()
     local methods = require("lvim.core.cmp").methods
     local cmp = require "cmp"
     local luasnip = require "luasnip"
-    local copilot_keys = vim.fn["copilot#Accept"]()
     if cmp.visible() then
       cmp.select_next_item()
     elseif vim.api.nvim_get_mode().mode == "c" then
@@ -498,14 +499,13 @@ M.config = function()
       luasnip.expand()
     elseif methods.jumpable() then
       luasnip.jump(1)
-    elseif copilot_keys ~= "" then -- prioritise copilot over snippets
-      -- Copilot keys do not need to be wrapped in termcodes
-      vim.api.nvim_feedkeys(copilot_keys, "i", true)
     elseif methods.check_backspace() then
       fallback()
     else
       methods.feedkeys("<Plug>(Tabout)", "")
     end
+
+    -- lvim.builtin.cmp.mapping["<Tab>"] = cmp.mapping(M.tab, { "i", "c" })
   end
 
   function M.shift_tab(fallback)
@@ -526,6 +526,8 @@ M.config = function()
         methods.feedkeys("<Plug>(Tabout)", "")
       end
     end
+
+    -- lvim.builtin.cmp.mapping["<S-Tab>"] = cmp.mapping(M.shift_tab, { "i", "c" })
   end
 
   -- credit: https://github.com/max397574/NeovimConfig/blob/master/lua/configs/lsp/init.lua

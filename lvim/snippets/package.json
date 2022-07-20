@@ -18,16 +18,16 @@
         "path": "./react-ts.json"
       },
       {
-        "language": "jekyll",
-        "path": "./frameworks/jekyll.json"
-      },
-      {
         "language": "html",
         "path": "./html.json"
       },
       {
         "language": "javascript",
         "path": "./javascript.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./chakra.json"
       }
     ]
   }

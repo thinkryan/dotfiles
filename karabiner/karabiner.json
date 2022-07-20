@@ -230,16 +230,6 @@
                 },
                 {
                     "from": {
-                        "key_code": "left_option"
-                    },
-                    "to": [
-                        {
-                            "key_code": "left_command"
-                        }
-                    ]
-                },
-                {
-                    "from": {
                         "pointing_button": "button4"
                     },
                     "to": [

@@ -31,7 +31,7 @@ lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
 lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
 lvim.builtin.lua_dev = { active = false } -- change this to enable/disable folke/lua_dev
 lvim.builtin.test_runner = { active = false } -- change this to enable/disable vim-test, ultest
-lvim.builtin.cheat = { active = true } -- enable cheat.sh integration
+lvim.builtin.cheat = { active = false } -- enable cheat.sh integration
 lvim.builtin.sql_integration = { active = false } -- use sql integration
 lvim.builtin.smooth_scroll = "neoscroll" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
@@ -44,7 +44,7 @@ lvim.builtin.motion_provider = "hop" -- change this to use different motion prov
 lvim.builtin.hlslens = { active = false } -- enable/disable hlslens
 lvim.builtin.csv_support = false -- enable/disable csv support
 lvim.builtin.sidebar = { active = false } -- enable/disable sidebar
-lvim.builtin.async_tasks = { active = false } -- enable/disable async tasks
+lvim.builtin.async_tasks = { active = true } -- enable/disable async tasks
 lvim.builtin.winbar_provider = "filename" -- can be "filename" or "treesitter" or ""
 lvim.builtin.collaborative_editing = { active = false } -- enable/disable collaborative editing
 lvim.builtin.file_browser = { active = false } -- enable/disable telescope file browser
@@ -53,7 +53,7 @@ lvim.builtin.tag_provider = "symbols-outline" -- change this to use different ta
 lvim.builtin.editorconfig = { active = true } -- enable/disable editorconfig
 lvim.builtin.global_statusline = true -- set true to use global statusline
 lvim.builtin.dressing = { active = false } -- enable to override vim.ui.input and vim.ui.select with telescope
-lvim.builtin.refactoring = { active = true } -- enable to use refactoring.nvim code_actions
+lvim.builtin.refactoring = { active = false } -- enable to use refactoring.nvim code_actions
 lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and tmux
 lvim.builtin.neogit = { active = true } -- use neogit
 
@@ -89,6 +89,9 @@ require("user.plugins").config()
 -- null_ls
 -- =========================================
 require("user.null_ls.init").config()
+
+-- AutoPairs configuration
+require("user.autopairs").config()
 
 -- TailwindCSS - @todo refactor to separate folder
 -- =========================================

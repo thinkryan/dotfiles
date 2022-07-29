@@ -17,6 +17,9 @@ M.config = function()
       { group = "_lvim_user", pattern = "*", command = "set norelativenumber nonumber nocursorline" }
     )
   end
+  -- Add Blade file support
+  create_aucmd({"BufRead", "BufNewFile"}, { group = "_lvim_user", pattern = "*.blade.php", command = "set filetype=blade" })
+
 
   -- create_aucmd("FileType", {
   --   group = "_lvim_user",
@@ -35,5 +38,4 @@ M.config = function()
       command = codelens_viewer,
     })
   end
-
 return M

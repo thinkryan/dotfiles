@@ -1,54 +1,55 @@
-local util = require "lsp.config.util"
-local bin_name = "blade-formatter"
+local M = {}
 
-local cmd = { bin_name, "--stdio" }
+M.setup = function()
+  local h = require "null-ls.helpers"
 
-local function format_code()
-  local params = {
-    command = "blade-formatter",
-    arguments = { vim.uri_from_bufnr(0) },
+  local u = require "null-ls.utils"
+  local methods = require "null-ls.methods"
+
+  local FORMATTING = methods.internal.FORMATTING
+
+  return h.make_builtin {
+    name = "blade_formatter",
+    meta = {
+      url = "https://github.com/shufo/blade-formatter",
+      description = "An opinionated blade template formatter for Laravel that respects readability",
+    },
+    method = FORMATTING,
+    filetypes = { "blade" },
+    generator_opts = {
+      command = "blade-formatter",
+      args = {
+        "--write",
+        "$FILENAME",
+      },
+      cwd = h.cache.by_bufnr(function(params)
+        return u.root_pattern("composer.json", "composer.lock")(params.bufname)
+      end),
+      to_stdin = false,
+      to_temp_file = true,
+    },
+    factory = h.formatter_factory,
   }
-  vim.lsp.buf.execute_command(params)
 end
 
-local function format_diff()
-  local params = {
-    command = "blade-formatter -c -d",
-    arguments = { vim.uri_from_bufnr(0) },
+local function setupnls()
+  local status_ok, nls = pcall(require, "null-ls")
+  if not status_ok then
+    return
+  end
+
+  -- attach blade_formatter as an available source within null-ls
+  local sources = {
+    nls.builtins.formatting.blade_formatter,
   }
-  vim.lsp.buf.execute_command(params)
+
+  nls.setup {
+    debounce = 150,
+    save_after_format = false,
+    sources = sources,
+  }
 end
 
--- TODO: Show diff output in Telescope
--- TODO: Add .bladeignore support
+setupnls()
 
-return {
-  default_config = {
-    cmd = cmd,
-    filetypes = { "blade", "php" },
-    single_file_support = true,
-    root_dir = util.root_pattern(".bladeformatterrc.json", ".bladeformatterrc"),
-    init_options = {
-      configuration = {},
-    },
-  },
-  commands = {
-    TRBladeformat = {
-      format_code,
-      description = "Format blade buffer",
-    },
-  },
-  docs = {
-    description = [[ blade-formatter can be installed with via `npm` 
-
-    ``` sh npm install -g blade-formatter
-    ```
-    ]],
-    default_config = {
-      root_dir = [[root_pattern(".bladeformatterrc.json", ".bladeformatterrc")]],
-    },
-  },
-
-  -- Better way to do this?
-  require("lvim.lsp.manager").setup "blade-formatter",
-}
+return M

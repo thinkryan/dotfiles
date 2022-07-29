@@ -38,20 +38,20 @@ M.config = function()
     custom_go_actions.gostructhelper,
     custom_md_hover.dictionary,
 
-    -- nls.builtins.code_actions.refactoring.with {
-    --   filetypes = {
-    --     "typescriptreact",
-    --     "javascriptreact",
-    --     "javascript",
-    --     "lua",
-    --     "c",
-    --     "cpp",
-    --     "go",
-    --     "python",
-    --     "java",
-    --     "php",
-    --   },
-    -- },
+    nls.builtins.code_actions.refactoring.with {
+      filetypes = {
+        "typescriptreact",
+        "javascriptreact",
+        "javascript",
+        "lua",
+        "c",
+        "cpp",
+        "go",
+        "python",
+        "java",
+        "php",
+      },
+    },
   }
 
   -- you can either config null-ls itself

@@ -1,0 +1,20 @@
+{
+  "name": "my-snippets",
+  "author": "Ryan Dennler",
+  "description": "Simply add Framework level snippets like Chakra into my LunarVim environment"
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "typescriptreact",
+          "typescript",
+          "javascriptreact"
+        ],
+        "path": "./chakra.json"
+      }
+    ]
+  }
+}

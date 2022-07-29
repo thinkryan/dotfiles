@@ -107,11 +107,11 @@ M.config = function()
 
   lvim.builtin.cmp.sources = {
     { name = "nvim_lsp", priority = 9 },
-    { name = "luasnip", priority = 4, max_item_count = 3 },
+    { name = "luasnip", priority = 8 },
     { name = "cmp_tabnine", priority = 7, max_item_count = 3 },
-    { name = "path", priority = 7, max_item_count = 5 },
-    { name = "buffer", priority = 6, max_item_count = 5, keyword_length = 5 },
-    { name = "nvim_lua", priority = 5 },
+    { name = "path", priority = 6, max_item_count = 5 },
+    { name = "buffer", priority = 5, max_item_count = 5, keyword_length = 5 },
+    { name = "nvim_lua", priority = 4 },
   }
 
   lvim.builtin.cmp.experimental = {
@@ -234,6 +234,7 @@ M.config = function()
   lvim.lsp.diagnostics.underline = true
   lvim.lsp.diagnostics.virtual_text = {
     spacing = 4,
+    -- prefix = ''
     prefix = ''
   }
   lvim.lsp.diagnostics.float.format = function(d)
@@ -440,32 +441,32 @@ M.config = function()
     },
   }
   local telescope_actions = require "telescope.actions.set"
-  lvim.builtin.telescope.defaults.pickers.find_files = {
-    attach_mappings = function(_)
-      telescope_actions.select:enhance {
-        post = function()
-          vim.cmd ":normal! zx"
-        end,
-      }
-      return true
-    end,
-    find_command = { "fd", "--type=file", "--hidden", "--smart-case" },
-  }
+  -- lvim.builtin.telescope.defaults.pickers.find_files = {
+  --   attach_mappings = function(_)
+  --     telescope_actions.select:enhance {
+  --       post = function()
+  --         vim.cmd ":normal! zx"
+  --       end,
+  --     }
+  --     return true
+  --   end,
+  --   find_command = { "fd", "--type=file", "--hidden", "--smart-case" },
+  -- }
   lvim.builtin.telescope.on_config_done = function(telescope)
-    local command_center = require "command_center"
-    lvim.builtin.telescope.extensions.command_center = {
-      components = {
-        command_center.component.DESCRIPTION,
-        -- command_center.component.KEYBINDINGS,
-        command_center.component.COMMAND,
-      },
-      auto_replace_desc_with_cmd = false,
-    }
-    telescope.load_extension "file_create"
-    telescope.load_extension "command_center"
-    if lvim.builtin.file_browser.active then
-      telescope.load_extension "file_browser"
-    end
+    -- local command_center = require "command_center"
+    -- lvim.builtin.telescope.extensions.command_center = {
+    --   components = {
+    --     command_center.component.DESCRIPTION,
+    --     -- command_center.component.KEYBINDINGS,
+    --     command_center.component.COMMAND,
+    --   },
+    --   auto_replace_desc_with_cmd = false,
+    -- }
+    -- telescope.load_extension "file_create"
+    -- telescope.load_extension "command_center"
+    -- if lvim.builtin.file_browser.active then
+    --   telescope.load_extension "file_browser"
+    -- end
   end
 
   -- Terminal

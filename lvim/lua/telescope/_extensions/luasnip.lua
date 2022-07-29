@@ -171,4 +171,4 @@ local luasnip_fn = function(opts)
   }):find()
 end -- end custom function
 
-return telescope.register_extension { exports = { luasnip = luasnip_fn } }
+return telescope.register_extension({ exports = { luasnip = luasnip_fn } })

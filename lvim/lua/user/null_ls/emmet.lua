@@ -9,7 +9,6 @@ M.config = function()
     filetypes = {
       "html",
       "svelte",
-      "php",
       "xml",
     },
     root_dir = function()

@@ -155,7 +155,6 @@ M.config = function()
       keys = "<leader>y",
       disable = not lvim.builtin.neoclip.active,
     },
-
     {
       "sindrets/diffview.nvim",
       opt = true,

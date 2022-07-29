@@ -32,7 +32,8 @@ M.config = function()
       "javascript",
       "javascriptreact",
       "typescriptreact",
-      "php", -- For blade templates TODO: Adjus for *.blade.php?
+      "blade",
+      "css"
     }
   }
 

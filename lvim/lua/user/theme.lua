@@ -5,14 +5,14 @@ M.rose_pine = function()
     ---@usage 'main'|'moon'
     dark_variant = "moon",
     bold_vert_split = false,
-    dim_nc_background = false,
+    dim_nc_background = true,
     disable_background = true,
     disable_float_background = true,
     disable_italics = true,
     ---@usage string hex value or named color from rosepinetheme.com/palette
     groups = {
       border = "highlight_med",
-      comment = "muted",
+      comment = "subtle",
       link = "iris",
       punctuation = "subtle",
 
@@ -20,6 +20,16 @@ M.rose_pine = function()
       hint = "iris",
       info = "foam",
       warn = "gold",
+
+      git_add = "foam",
+      git_change = "rose",
+      git_delete = "love",
+      git_dirty = "rose",
+      git_ignore = "muted",
+      git_merge = "iris",
+      git_rename = "pine",
+      git_stage = "iris",
+      git_text = "rose",
 
       headings = {
         h1 = "iris",
@@ -32,6 +42,7 @@ M.rose_pine = function()
     },
     highlight_groups = {
       Boolean = { fg = "love" },
+      DiagnosticError = { fg = "love" }
     },
   }
 end
@@ -41,7 +52,7 @@ M.moonlight = function()
   vim.g.moonlight_italic_comments = true
   vim.g.moonlight_contrast = true
   vim.g.moonlight_borders = false
-  vim.g.moonlight_disable_background = false
+  vim.g.moonlight_disable_background = true
   moonlight.set()
 end
 
@@ -224,7 +235,8 @@ M.colors = {
 }
 
 M.current_colors = function()
-  local colors = M.colors.moonlight_colors
+  -- local colors = M.colors.moonlight_colors
+  local colors = M.colors.rose_pine_colors
   return colors
 end
 

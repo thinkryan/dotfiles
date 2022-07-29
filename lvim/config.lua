@@ -20,7 +20,7 @@ require("user.neovim").config()
 
 -- Customization
 -- =========================================
-lvim.builtin.lastplace = { active = false } -- change to false if you are jumping to future
+lvim.builtin.lastplace = { active = true } -- change to false if you are jumping to future
 lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
 lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
 lvim.builtin.presence = { active = false } -- change to true if you want discord presence
@@ -28,7 +28,7 @@ lvim.builtin.orgmode = { active = false } -- change to true if you want orgmode.
 lvim.builtin.dap.active = false -- change this to enable/disable debugging
 lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy statusline
 lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
-lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
+lvim.builtin.fancy_diff = { active = true } -- enable/disable fancier git diff
 lvim.builtin.lua_dev = { active = false } -- change this to enable/disable folke/lua_dev
 lvim.builtin.test_runner = { active = false } -- change this to enable/disable vim-test, ultest
 lvim.builtin.cheat = { active = false } -- enable cheat.sh integration
@@ -82,9 +82,8 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
   "taplo",
   "texlab",
   "yamlls",
-  "tsserver"
+  "tsserver",
 })
-require("user.plugins").config()
 
 -- null_ls
 -- =========================================
@@ -97,15 +96,25 @@ require("user.autopairs").config()
 -- =========================================
 require("user.null_ls.tailwindcss").config()
 
+-- Blade LSP Support
+-- require("user.null_ls.blade").setup()
+
 -- Emmet - @todo refactor to separate folder
 -- =========================================
 require("user.null_ls.emmet").config()
+
+-- Prisma LSP Support for TS / TSReact Files
+require("user.lsp.prisma").config()
+
+-- External plugins
+require("user.plugins").config()
 
 -- Additional Plugins
 -- =========================================
 -- require("user.treesitter").config()
 
-lvim.colorscheme = "moonlight"
+-- lvim.colorscheme = "moonlight"
+lvim.colorscheme = "rose-pine"
 lvim.transparent_window = true
 
 -- Custom snippets

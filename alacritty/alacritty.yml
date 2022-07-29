@@ -1,0 +1,18 @@
+# Background opacity
+opacity: 0.5
+
+# Window decoration
+decorations: transparent
+
+# Title
+dynamic_title: true
+
+# Font configuration
+
+font:
+  normal:
+    family: MonoLisa
+    style: Regular
+    size: 14.0
+
+# Will plan on setting up alacritty in due time, want to resolve some font stuff with MonoLisa and also the idea of ligatures for macos

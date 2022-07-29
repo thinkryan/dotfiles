@@ -45,3 +45,13 @@ alias ts "tig show"
 alias cfg "z config && lvim ."
 
 alias cl "clear"
+
+# cli
+
+# alias trcli "docker exec -it -w '/usr/share/nginx/www/' (docker container ls | grep 'c4s-docker_php_8' | awk '{print $1}') /bin/sh"
+
+# Snippet Help
+
+alias chr "cat /Users/legion/.config/lvim/snippets/chakra.json | peco"
+alias tsr "cat /Users/legion/.config/lvim/snippets/react-ts.json | peco"
+alias jsr "cat /Users/legion/.config/lvim/snippets/javascript.json | peco"

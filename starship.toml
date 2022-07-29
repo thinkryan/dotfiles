@@ -33,7 +33,6 @@ up_to_date = "[♥](bold #ff7d7f)"
 modified = "¿(bold #f9e32a)"
 staged = "[☇☇](bold #f9e32a)"
 renamed = "?(bold #ff7d7f)"
-deleted = "[🌧🌧]"
 style = "bold ($git)"
 
 [git_branch]

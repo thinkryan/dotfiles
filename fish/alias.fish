@@ -1,8 +1,10 @@
 # Listing files / LS (exa)
 
-# Tropical
-if test -e (dirname (status --current-filename))/tropical.fish
-    source (dirname (status --current-filename))/tropical.fish
+# work
+if yo
+    if test -e (dirname (status --current-filename))/tr.fish
+        source (dirname (status --current-filename))/tr.fish
+    end
 end
 
 # NOTE: Add some additional colorls options and figure out a way to reduce padding on -l output views
@@ -46,9 +48,6 @@ alias cfg "z config && lvim ."
 
 alias cl "clear"
 
-# cli
-
-# alias trcli "docker exec -it -w '/usr/share/nginx/www/' (docker container ls | grep 'c4s-docker_php_8' | awk '{print $1}') /bin/sh"
 
 # Snippet Help
 

@@ -10,6 +10,13 @@ function fzf-cdhist-widget -d 'cd to one of the previously visited locations'
   commandline -f repaint
 end
 
+function fzf_add_to_commandline -d 'add stdin to the command line, for fzf functions'
+	read -l result
+	commandline -t ""
+	commandline -it -- (string escape $result)
+	commandline -f repaint
+end
+
 function fzf-rg-search-widget -d 'find text in files'
 
   set rg_command "rg --ignore-case --files-with-matches -uu --iglob='!**/.git/' --follow"

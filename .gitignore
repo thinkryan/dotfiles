@@ -6,9 +6,10 @@
 /darktable
 /nvim
 
-./raycast/
-./karabiner/
-./gitmux/
-./coc/
+/raycast/
+/karabiner/
+/gitmux/
+/coc/
+/spicetify/
 
 fish/tr.fish

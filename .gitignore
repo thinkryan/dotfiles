@@ -12,4 +12,6 @@
 /coc/
 /spicetify/
 
+.DS_Store
+
 fish/tr.fish

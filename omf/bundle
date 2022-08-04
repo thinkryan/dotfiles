@@ -5,6 +5,7 @@ package config
 package fzf-autojump
 package git-flow
 package https://github.com/catppuccin/fish
+package https://github.com/fabioantunes/fish-nvm
 package https://github.com/jethrokuan/z
 package https://github.com/jhillyerd/plugin-git
 package jump

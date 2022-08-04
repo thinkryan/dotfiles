@@ -8,13 +8,13 @@ M.config = function()
 
   local cfg = {
     bind = true,
-    doc_lines = 10,
+    doc_lines = 15,
     floating_window = false, -- show hint in a floating window, set to false for virtual text only mode
     floating_window_above_cur_line = true,
     fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
     hint_enable = true, -- virtual hint enable
-    hint_prefix = "🐼 ", -- Panda for parameter
-    -- hint_prefix = " ",
+    hint_prefix = " ", -- Panda for parameter
+    -- hint_prefix = "🐼 ",
     hint_scheme = "String",
     -- use_lspsaga = false, -- set to true if you want to use lspsaga popup
     hi_parameter = "Search", -- how your parameter will be highlight
@@ -24,13 +24,13 @@ M.config = function()
     handler_opts = {
       border = "shadow", -- double, single, shadow, none
     },
-    -- transpancy = 80,
-    -- extra_trigger_chars = { "(", "," }, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+    transpancy = 80,
+    extra_trigger_chars = { "(", "," }, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
     zindex = 1002, -- by default it will be on top of all floating windows, set to 50 send it to bottom
     debug = false, -- set to true to enable debug logging
     log_path = "debug_log_file_path", -- debug log path
     padding = "", -- character to pad on left and right of signature can be ' ', or '|'  etc
-    shadow_blend = 40, -- if you using shadow as border use this set the opacity
+    shadow_blend = 60, -- if you using shadow as border use this set the opacity
     shadow_guibg = "Black", -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
   }
   sig.setup(cfg)

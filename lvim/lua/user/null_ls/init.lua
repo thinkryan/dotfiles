@@ -14,6 +14,7 @@ M.config = function()
   local custom_go_actions = require "user.null_ls.go"
   local custom_md_hover = require "user.null_ls.markdown"
   local sources = {
+    nls.builtins.formatting.blade_formatter,
     nls.builtins.formatting.stylua,
     -- Support for nix files
     nls.builtins.diagnostics.ansiblelint.with {
@@ -37,22 +38,16 @@ M.config = function()
     custom_go_actions.gomodifytags,
     custom_go_actions.gostructhelper,
     custom_md_hover.dictionary,
-
-    nls.builtins.code_actions.refactoring.with {
-      filetypes = {
-        "typescriptreact",
-        "javascriptreact",
-        "javascript",
-        "lua",
-        "c",
-        "cpp",
-        "go",
-        "python",
-        "java",
-        "php",
-      },
-    },
   }
+
+  if lvim.builtin.refactoring.active then
+    table.insert(
+      sources,
+      nls.builtins.code_actions.refactoring.with {
+        filetypes = { "typescript", "typescriptreact", "javascriptreact", "javascript", "lua", "c", "cpp", "go", "python", "java", "php" },
+      }
+    )
+  end
 
   -- you can either config null-ls itself
   nls.setup {

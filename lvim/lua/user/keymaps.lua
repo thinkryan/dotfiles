@@ -77,6 +77,20 @@ M.set_lightspeed_keymaps = function()
   ]]
 end
 
+local function set_lsp_wh_keymaps()
+  local ok, _ = pcall(require, "vim.diagnostic")
+  if ok then
+    lvim.builtin.which_key.mappings["l"]["j"] = {
+      "<cmd>lua vim.diagnostic.goto_next({float = {border = 'rounded', focusable = false, source = 'always'}})<cr>",
+      "Next Diagnostic",
+    }
+    lvim.builtin.which_key.mappings["l"]["k"] = {
+      "<cmd>lua vim.diagnostic.goto_prev({float = {border = 'rounded', focusable = false, source = 'always'}})<cr>",
+      "Prev Diagnostic",
+    }
+end
+end
+
 local function set_bufferline_keymaps()
   -- TODO: Does bufferline support buffer splitting?
   lvim.keys.normal_mode["<S-x>"] = "<Cmd>BufferKill<CR>"
@@ -120,10 +134,32 @@ local function set_bufferline_keymaps()
 end
 
 local function set_telescope_keymaps()
+
+    lvim.builtin.which_key.mappings["F"] = {
+    name = " Find",
+    b = { "<cmd>lua require('user.telescope').builtin()<cr>", "Builtin" },
+    f = { "<cmd>lua require('user.telescope').curbuf()<cr>", "Current Buffer" },
+    g = { "<cmd>lua require('user.telescope').git_files()<cr>", "Git Files" },
+    i = { "<cmd>lua require('user.telescope').installed_plugins()<cr>", "Installed Plugins" },
+    l = {
+      "<cmd>lua require('telescope.builtin').resume()<cr>",
+      "Last Search",
+    },
+    p = { "<cmd>lua require('user.telescope').project_search()<cr>", "Project" },
+    s = { "<cmd>lua require('user.telescope').git_status()<cr>", "Git Status" },
+    z = { "<cmd>lua require('user.telescope').search_only_certain_files()<cr>", "Certain Filetype" },
+  }
+
   lvim.keys.normal_mode["<leader>i"] = ":Telescope current_buffer_fuzzy_find case_mode=ignore_case<cr>"
   lvim.keys.normal_mode["<C-p>"] = ":Telescope find_files<cr>"
   lvim.keys.normal_mode["<M-p>"] = ":Telescope buffers<cr>"
   lvim.keys.normal_mode["<M-s>"] = ":Telescope lsp_document_symbols<cr>"
+
+  lvim.builtin.which_key.mappings["f"] = {
+    require("lvim.core.telescope.custom-finders").find_project_files,
+    " Find File",
+  }
+
 end
 
 local function set_refactoring_keymaps()
@@ -155,7 +191,6 @@ local function set_harpoon_keymaps()
 end
 
 local function set_trouble_keymaps()
-  ----- Trouble Toggling - @todo convert to builtins
   lvim.keys.normal_mode["<leader>xx"] = ":TroubleToggle<cr>"
   lvim.keys.normal_mode["<leader>xw"] = ":TroubleToggle workspace_diagnostics<cr>"
   lvim.keys.normal_mode["<leader>xq"] = ":TroubleToggle quickfix<cr>"
@@ -167,6 +202,10 @@ end
 
 local function set_command_center_keymaps()
   lvim.keys.normal_mode["<leader>?c"] = ":Telescope command_center<cr>"
+end
+
+local function set_legendary_keyamsp()
+  lvim.builtin.which_key.mappings["C"] = { "<cmd>lua require('legendary').find('commands')<cr>", " Command Palette" }
 end
 
 -- Additional Keybinds
@@ -189,7 +228,6 @@ M.config = function()
       [[<cmd>lua os.execute("xdg-open " .. vim.fn.shellescape(vim.fn.expand "<cWORD>")); vim.cmd "redraw!"<cr>]]
   end
 
-  -- @todo this is very powerful, this should definitely be extended based on filetype
   lvim.keys.insert_mode["<A-s>"] =
     "<cmd>lua require('telescope').extensions.luasnip.luasnip(require('telescope.themes').get_cursor({}))<CR>"
 
@@ -203,6 +241,7 @@ M.config = function()
   lvim.keys.normal_mode["dw"] = 'vb"_d'
 
   -- HTML selection (possibly port into Lunarvim specific keybinds)
+  -- TODO: Add some handling or implement a neovim plugin to handle these more thoroughly
   lvim.keys.normal_mode["vix"] = 'va"oB'
   lvim.keys.normal_mode["vax"] = 'va"oBh'
   lvim.keys.normal_mode["dix"] = 'da"oB'
@@ -210,12 +249,13 @@ M.config = function()
   lvim.keys.normal_mode["cix"] = 'ca"oB'
   lvim.keys.normal_mode["cax"] = 'ca"oBh'
 
-
+  set_lsp_wh_keymaps()
   set_telescope_keymaps()
   set_refactoring_keymaps()
   set_trouble_keymaps()
   set_neogit_keymaps()
   set_command_center_keymaps()
+  set_legendary_keyamsp()
 end
 
 return M

@@ -161,9 +161,6 @@ M.config = function()
       cmd = { "DiffviewOpen", "DiffviewFileHistory" },
       module = "diffview",
       keys = "<leader>gd",
-      setup = function()
-        require("which-key").register { ["<leader>gd"] = "diffview: diff HEAD" }
-      end,
       config = function()
         require("diffview").setup {
           enhanced_diff_hl = true,
@@ -198,6 +195,9 @@ M.config = function()
     },
     {
       "windwp/nvim-ts-autotag",
+      config = function()
+        require("user.ts_autotag").config()
+      end,
     },
     {
       "TimUntersberger/neogit",
@@ -229,6 +229,45 @@ M.config = function()
       "nvim-telescope/telescope-ui-select.nvim",
       -- require("telescope").load_extension("ui-select"),
     },
+    {
+      "ThePrimeagen/refactoring.nvim",
+      requires = {
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-treesitter/nvim-treesitter" },
+      },
+    },
+    {
+      "nvim-telescope/telescope-file-browser.nvim",
+      disable = not lvim.builtin.file_browser.active
+    },
+    {
+      "stevearc/dressing.nvim",
+      config = function()
+        require("user.dress").config()
+      end,
+      event = "BufWinEnter",
+    },
+    {
+      "mrjones2014/legendary.nvim",
+      config = function()
+        require("user.legendary").config()
+      end,
+    },
+    {
+      "j-hui/fidget.nvim",
+      config = function()
+        require("user.fidget").config()
+      end,
+    },
+    -- {
+    --   "ray-x/navigator.lua",
+    --   requires = {
+    --     { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+    --     { "neovim/nvim-lspconfig" },
+    --   },
+    --   -- require("navigator").setup()
+    --   require("user.navigator").config()
+    -- },
   }
 end
 

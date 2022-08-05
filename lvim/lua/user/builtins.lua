@@ -235,7 +235,7 @@ M.config = function()
   lvim.lsp.diagnostics.virtual_text = {
     spacing = 4,
     -- prefix = ''
-    prefix = ''
+    prefix = "",
   }
   lvim.lsp.diagnostics.float.format = function(d)
     local t = vim.deepcopy(d)
@@ -247,7 +247,6 @@ M.config = function()
     end
     return t.message
   end
-
 
   -- Project
   -- =========================================
@@ -452,6 +451,19 @@ M.config = function()
   --   end,
   --   find_command = { "fd", "--type=file", "--hidden", "--smart-case" },
   -- }
+
+  -- Setup file_browser plugin
+  lvim.builtin.telescope.on_config_done = function(telescope)
+    -- local fb_actions = telescope.extensions.file_browser.actions
+    telescope.setup {
+      extensions = {
+        file_browser = {
+          theme = "rose-pine",
+        },
+      },
+    }
+  end
+
   lvim.builtin.telescope.on_config_done = function(telescope)
     local command_center = require "command_center"
     lvim.builtin.telescope.extensions.command_center = {
@@ -464,6 +476,7 @@ M.config = function()
     }
     telescope.load_extension "file_create"
     telescope.load_extension "command_center"
+    telescope.load_extension "harpoon"
     if lvim.builtin.file_browser.active then
       telescope.load_extension "file_browser"
     end
@@ -612,7 +625,6 @@ M.config = function()
 
   lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
   lvim.builtin.nvimtree.setup.actions.open_file.resize_window = true
-
 end
 
 return M

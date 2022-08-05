@@ -88,7 +88,7 @@ local function set_lsp_wh_keymaps()
       "<cmd>lua vim.diagnostic.goto_prev({float = {border = 'rounded', focusable = false, source = 'always'}})<cr>",
       "Prev Diagnostic",
     }
-end
+  end
 end
 
 local function set_bufferline_keymaps()
@@ -134,8 +134,7 @@ local function set_bufferline_keymaps()
 end
 
 local function set_telescope_keymaps()
-
-    lvim.builtin.which_key.mappings["F"] = {
+  lvim.builtin.which_key.mappings["F"] = {
     name = " Find",
     b = { "<cmd>lua require('user.telescope').builtin()<cr>", "Builtin" },
     f = { "<cmd>lua require('user.telescope').curbuf()<cr>", "Current Buffer" },
@@ -150,6 +149,11 @@ local function set_telescope_keymaps()
     z = { "<cmd>lua require('user.telescope').search_only_certain_files()<cr>", "Certain Filetype" },
   }
 
+  lvim.builtin.which_key.mappings["s"] = {
+    p = { "<cmd>Telescope live_grep<cr>", "Grep Search Project" },
+    S = { "<cmd>Telescope grep_string<cr>", "Grep String at Cursor" }
+  }
+
   lvim.keys.normal_mode["<leader>i"] = ":Telescope current_buffer_fuzzy_find case_mode=ignore_case<cr>"
   lvim.keys.normal_mode["<C-p>"] = ":Telescope find_files<cr>"
   lvim.keys.normal_mode["<M-p>"] = ":Telescope buffers<cr>"
@@ -159,7 +163,6 @@ local function set_telescope_keymaps()
     require("lvim.core.telescope.custom-finders").find_project_files,
     " Find File",
   }
-
 end
 
 local function set_refactoring_keymaps()
@@ -213,8 +216,8 @@ end
 M.config = function()
   set_bufferline_keymaps()
 
-  lvim.keys.normal_mode["<leader>tf"] = ":NvimTreeFocus<cr>"
-
+  -- :NvimTreeFocus<cr> --> Move this back if we stay with NvimTree
+  lvim.keys.normal_mode["<leader>tf"] = "<cmd>Telescope file_browser<cr>"
   lvim.keys.visual_mode["ga"] = "<esc><Cmd>lua vim.lsp.buf.range_code_action()<CR>"
   lvim.keys.visual_mode["<leader>st"] = "<Cmd>lua require('user.telescope').grep_string_visual()<CR>"
 
@@ -237,7 +240,7 @@ M.config = function()
   lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
   lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
 
-    -- Delete a word backwards in normal mode
+  -- Delete a word backwards in normal mode
   lvim.keys.normal_mode["dw"] = 'vb"_d'
 
   -- HTML selection (possibly port into Lunarvim specific keybinds)

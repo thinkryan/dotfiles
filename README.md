@@ -20,9 +20,19 @@ Rose Pine theme schematic. Tmux theme from Catppuccin
 
 ### LunarVim Theme
 
-Moonlight
+Moonlight | Rose Pine | Kanagawa
 
-## Technologies:
+All themes are setup within my configuration, simply adjust one to however you'd like and it will activate.
+
+#### Example - Theme Switching
+
+To switch to Rose Pine theme in config.lua
+
+```lua
+  lvim.colorscheme = "rose-pine"
+```
+
+## Technologies
 
 * Kitty
 * Fish Shell -> Fundle / omf utilities

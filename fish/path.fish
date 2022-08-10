@@ -9,3 +9,4 @@ function add-to-path --argument dir --description "adds argument to path if it d
 end
 
 add-to-path ~/.tmux/bin
+add-to-path ~/.spicetify
